@@ -1,8 +1,8 @@
-export default function Home() {
+export default function Dashboard() {
   return (
     <div>
       <main>
-        Welcome client
+        Welcome admin
       </main>
     </div>
   );
