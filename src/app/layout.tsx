@@ -1,6 +1,6 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import Menu from '@/components/menu';
+import Header from '@/app/(client)/components/header';
+import Footer from '@/app/(client)/components/footer';
+import Menu from '@/app/(client)/components/menu';
 import type { Metadata } from "next";
 import "./globals.css";
 
