@@ -1,9 +1,10 @@
+import { API_CLIENT_PRODUCT_URL } from '@/app/api/const';
 import { Product } from '../types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1/admin';
-
 export async function getProducts(): Promise<Product[]> {
-  const response = await fetch('/api/products');
+  // Folder structure => /api/product
+  const response = await fetch('/api/product');
+
   if (!response.ok) {
     throw new Error('Failed to fetch products');
   }
@@ -11,16 +12,20 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function addToCart(productId: number) {
-  const response = await fetch(`${API_URL}/cart`, {
+  const response = await fetch('/api/cart', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ productId }),
+    body: JSON.stringify({
+      userId: "user-2", // TODO: Replace with actual user ID from authentication
+      pid: productId,
+      quantity: 1
+    }),
   });
   
   if (!response.ok) {
     throw new Error('Failed to add item to cart');
   }
   return response.json();
-} 
+}

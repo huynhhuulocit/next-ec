@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
+import { API_CLIENT_PRODUCT_URL } from '../const';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1/admin';
 
 export async function GET() {
   try {
-    const response = await fetch(`${API_URL}/products`);
-    
+    const response = await fetch(API_CLIENT_PRODUCT_URL);
+    console.log('router', response);
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
