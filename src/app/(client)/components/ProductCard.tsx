@@ -11,15 +11,17 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
+      setError(null);
       await addToCart(product.id);
       alert('Product added to cart!');
     } catch (error) {
       console.error('Failed to add to cart:', error);
-      alert('Failed to add product to cart');
+      setError('Failed to add product to cart');
     } finally {
       setIsLoading(false);
     }
@@ -54,6 +56,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             {isLoading ? 'Adding...' : 'Add to Cart'}
           </button>
         </div>
+        {error && (
+          <p className="text-red-600 text-sm mt-2">{error}</p>
+        )}
       </div>
     </div>
   );

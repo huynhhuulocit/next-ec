@@ -6,7 +6,7 @@ import { API_CLIENT_CART_URL } from '../const';
 export async function GET() {
   try {
     const userId = 'user-2';
-    const url = `${API_CLIENT_CART_URL}/${userId}`;
+    const url = `${API_CLIENT_CART_URL}?id=${userId}`;
     const response = await fetch(url);
     
     if (!response.ok) {

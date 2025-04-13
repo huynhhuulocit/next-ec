@@ -30,6 +30,16 @@ export default function Menu() {
                             Products
                         </Link>
                     </li>
+                    <li>
+                        <Link 
+                            href="/cart" 
+                            className={`text-gray-600 hover:text-blue-600 transition-colors duration-200 ${
+                                pathname === '/cart' ? 'text-blue-600 font-medium' : ''
+                            }`}
+                        >
+                            Cart
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>

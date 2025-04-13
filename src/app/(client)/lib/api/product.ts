@@ -2,13 +2,19 @@ import { API_CLIENT_PRODUCT_URL } from '@/app/api/const';
 import { Product } from '../types';
 
 export async function getProducts(): Promise<Product[]> {
-  // Folder structure => /api/product
-  const response = await fetch('/api/product');
+  try {
+    // next.js cache { revalidate: 3600 }
+    // const response = await fetch(API_CLIENT_PRODUCT_URL, { next: { revalidate: 3600 } });
+    const response = await fetch(API_CLIENT_PRODUCT_URL);
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
   }
-  return response.json();
 }
 
 export async function addToCart(productId: number) {
